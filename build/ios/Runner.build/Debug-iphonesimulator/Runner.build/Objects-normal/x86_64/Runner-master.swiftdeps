@@ -1,0 +1,5 @@
+version: "Apple Swift version 5.2 (swiftlang-1103.0.32.1 clang-1103.0.32.29)"
+options: "e78e94a30629e13c3d49ea37ec116018"
+build_time: [1600394846, 103014000]
+inputs:
+  "/Users/andresforero/AndroidStudioProjects/invoice_app/ios/Runner/AppDelegate.swift": [1593645056, 0]
