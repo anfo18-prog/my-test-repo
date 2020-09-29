@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'dashboard.dart';
+import 'widgets/text_fields.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -41,15 +42,21 @@ class Login extends StatelessWidget {
                     letterSpacing: 2.0,
                     fontWeight: FontWeight.bold),
               ),
-              _FormTextFieldComponent(
+              FormTextFieldComponent(
                 icon: Icons.email,
                 hintText: "Ingresa tu email",
-                errorMessageText: "El email es obligatorio",
+                isPassword: false,
+                onTap: (value){
+                  return validateEmail(value);
+                },
               ),
-              _FormTextFieldComponent(
+              FormTextFieldComponent(
                 icon: Icons.check_circle,
                 hintText: "Ingresa tu contraseña",
-                errorMessageText: "Debes asociar la contraseña",
+                isPassword: true,
+                onTap: (value){
+                  return (value.length <= 6) ? "Debe tener al menos 6 caracteres" : null;
+                },
               ),
               Container(
                 padding: EdgeInsets.symmetric(vertical: 15.0),
@@ -77,53 +84,9 @@ class Login extends StatelessWidget {
   }
 }
 
-class _FormTextFieldComponent extends StatelessWidget {
-  //Attributes
-  final IconData icon;
-  final String hintText;
-  final String errorMessageText;
+String validateEmail(String value){
+  Pattern pattern = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+  RegExp regExp = new RegExp(pattern);
 
-  //Constructor
-  _FormTextFieldComponent({@required this.icon, @required this.hintText, @required this.errorMessageText});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(10.0),
-      color: Colors.lightGreen,
-      margin: EdgeInsets.symmetric(vertical: 15.0, horizontal: 30.0),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Icon(
-            icon,
-            color: Colors.white,
-          ),
-          SizedBox(
-            width: 10.0,
-          ),
-          Expanded(
-            child: TextFormField(
-              style: TextStyle(color: Colors.white),
-              decoration: InputDecoration(
-                  hintStyle: TextStyle(color: Colors.white),
-                  border: InputBorder.none,
-                  hintText: hintText,
-                  fillColor: Colors.white
-
-              ),
-              validator: (value) {
-                if (value.isEmpty) {
-                  return errorMessageText;
-                }
-                return null;
-              },
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  return (!regExp.hasMatch(value)) ? "Ingresa un email valido" : null;
 }
-
-

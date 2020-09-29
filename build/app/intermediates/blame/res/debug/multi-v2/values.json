@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/andresforero/AndroidStudioProjects/invoice_app/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
+            "outputFile": "/Users/andresforero/AndroidStudioProjects/my-test-repo/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
             "map": [
                 {
-                    "source": "/Users/andresforero/AndroidStudioProjects/invoice_app/android/app/src/main/res/values/styles.xml",
+                    "source": "/Users/andresforero/AndroidStudioProjects/my-test-repo/android/app/src/main/res/values/styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",

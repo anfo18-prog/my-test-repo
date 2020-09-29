@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'widgets/text_fields.dart';
+
 class MyAppStateless extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -97,18 +99,42 @@ class MyAppStateless extends StatelessWidget {
 }
 
 class DetailView extends StatelessWidget {
+  final formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Detalles"),
-      ),
-      body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: Text('Volver!'),
+      body: SafeArea(
+        child: Form(
+          key: formKey,
+          child: Column(
+            children: [
+              FormTextFieldComponent(
+                icon: Icons.account_box,
+                hintText: "Nombre de usuario",
+                isPassword: false,
+                onTap: (value){
+                  return (value.length <= 6) ? "Debe tener al menos 6 caracteres" : null;
+                },
+              ),
+              FormTextFieldComponent(
+                icon: Icons.email,
+                hintText: "Email",
+                isPassword: false,
+                onTap: (value){
+                  return (value.length > 30) ? "Debe tener menos de 30 caracteres" : null;
+                },
+              ),
+              FormTextFieldComponent(
+                icon: Icons.phone,
+                hintText: "Número de teléfono",
+                isPassword: false,
+                onTap: (value){
+                  return (double.parse(value, (e) => null) == null) ? "Debe ser numérico" : null;
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
