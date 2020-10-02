@@ -6,9 +6,10 @@ class FormTextFieldComponent extends StatelessWidget {
   final String hintText;
   final FormFieldValidator onTap;
   final bool isPassword;
+  final TextEditingController controller;
 
   //Constructor
-  FormTextFieldComponent({@required this.icon, @required this.hintText, @required this.isPassword ,@required this.onTap});
+  FormTextFieldComponent({@required this.icon, @required this.hintText, @required this.isPassword ,@required this.onTap, @required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +29,7 @@ class FormTextFieldComponent extends StatelessWidget {
           ),
           Expanded(
             child: TextFormField(
+              controller: controller,
               obscureText: this.isPassword,
               style: TextStyle(color: Colors.white),
               decoration: InputDecoration(
