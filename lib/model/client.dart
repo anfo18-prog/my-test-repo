@@ -1,5 +1,10 @@
+import 'dart:convert';
+
+import '../util/http_requests.dart';
 
 class Client{
+  static const String CLIENT_ENDPOINT = "/client";
+
   final int id;
   final String name;
   final String phoneNumber;
@@ -14,7 +19,20 @@ class Client{
       name: json['name'] ?? '',
       phoneNumber: json['phone_number'] ?? '',
       address: json['address'] ?? '',
-      photoUrl: json['photo_url'],
+      photoUrl: json['photo_url'] ?? '',
+    );
+  }
+
+  static Resource<List<Client>> get list{
+    return Resource(
+      url: Resource.REQUESTS_URL + Client.CLIENT_ENDPOINT,
+      parse: (response){
+        final decodedData = utf8.decode(response.bodyBytes);
+        final result = jsonDecode(decodedData);
+        Iterable list = result;
+
+        return list.map((model) => Client.fromJson(model)).toList();
+      }
     );
   }
 

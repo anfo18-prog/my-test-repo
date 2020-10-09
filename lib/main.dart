@@ -105,13 +105,13 @@ class _LoginState extends State<Login> {
     var response = await http.post("https://private-59df5-client20.apiary-mock.com/client", body: body);
     var jsonResponse;
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    if(response.statusCode == 200){
+    if(response.statusCode == 200 || response.statusCode == 201){
       jsonResponse = jsonDecode(response.body);
       setState(() {
         _isLoading = false;
-        sharedPreferences.setString("username", jsonResponse['username']);
-        sharedPreferences.setString("access_token", jsonResponse['access_token']);
-        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => MyAppStateless()), (Route<dynamic> route) => false);
+        sharedPreferences.setString("username", jsonResponse['name']);
+        sharedPreferences.setString("access_token", jsonResponse['name']);
+        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => ClientList()), (Route<dynamic> route) => false);
       });
 
     }else{

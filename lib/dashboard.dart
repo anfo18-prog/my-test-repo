@@ -1,7 +1,56 @@
 import 'package:flutter/material.dart';
 
+import 'model/client.dart';
+import 'util/http_requests.dart';
 import 'widgets/text_fields.dart';
 
+class ClientList extends StatefulWidget {
+  @override
+  _ClientListState createState() => _ClientListState();
+}
+
+class _ClientListState extends State<ClientList> {
+  List<Client> _clients = List<Client>();
+
+  @override
+  void initState(){
+    super.initState();
+    _populateClients();
+  }
+
+  void _populateClients(){
+    RequestsHelper().load(Client.list).then((clients) => {
+      setState(() =>{
+        _clients = clients
+      })
+    });
+  }
+
+  ListTile _buildItemsForListView(BuildContext context, int index){
+    return ListTile(
+        leading: (_clients[index].photoUrl == null || _clients[index].photoUrl.isEmpty) ? Image.asset("images/logo.png") : Image.network(_clients[index].photoUrl),
+        title: Text(_clients[index].name),
+        subtitle: Text(_clients[index].phoneNumber),
+        trailing: Icon(Icons.arrow_forward_ios),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Listado de clientes"),
+      ),
+      body: ListView.builder(
+        itemCount: _clients.length,
+        itemBuilder: _buildItemsForListView,
+      ),
+    );
+  }
+}
+
+
+/*
 class MyAppStateless extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -141,3 +190,5 @@ class DetailView extends StatelessWidget {
   }
 }
 
+
+ */
