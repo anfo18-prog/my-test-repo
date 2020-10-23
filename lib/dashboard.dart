@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:invoice_app/widgets/list_view_cells.dart';
 
 import 'model/client.dart';
 import 'util/http_requests.dart';
@@ -32,15 +33,6 @@ class _ClientListState extends State<ClientList> {
     });
   }
 
-  ListTile _buildItemsForListView(BuildContext context, int index){
-    return ListTile(
-        leading: (_clients[index].photoUrl == null || _clients[index].photoUrl.isEmpty) ? Image.asset("images/logo.png") : Image.network(_clients[index].photoUrl),
-        title: Text(_clients[index].name),
-        subtitle: Text(_clients[index].phoneNumber),
-        trailing: Icon(Icons.arrow_forward_ios),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,64 +40,43 @@ class _ClientListState extends State<ClientList> {
         title: Text("Listado de clientes"),
         backgroundColor: Colors.lightGreen,
       ),
-      body: _clients.length > 0 ? RefreshIndicator(
-        child:  ListView.separated(
-          separatorBuilder: (context, index) => Divider(
-            color: Colors.lightGreen,
+      body: DataTable(
+        columns: [
+          DataColumn(
+            label: Text("Foto"),
           ),
-          itemCount: _clients.length,
-          //itemBuilder: _buildItemsForListView,
-          itemBuilder: (context, index){
-          return Card(
-            elevation: 0,
-            color: Colors.transparent,
-              child: Center(
-                child: Column(
-                  children: <Widget>[
-                  Padding(padding: EdgeInsets.all(10.0),),
-                    Column(
-                      children: <Widget>[
-                        CircleAvatar(
-                          radius: 35.0,
-                          backgroundImage:  (_clients[index].photoUrl == null || _clients[index].photoUrl.isEmpty) ? AssetImage("images/logo.png") : NetworkImage(_clients[index].photoUrl),
-                        ),
-                        Padding(padding: EdgeInsets.all(3.0),),
-                        Text(
-                          _clients[index].name,
-                          style: TextStyle(
-                              fontSize: 20, fontWeight:
-                              FontWeight.w300
-                          ),
-                        ),
-                        Text(
-                          _clients[index].phoneNumber,
-                          style: TextStyle(fontSize: 15),
-                        ),
-                        Text(
-                          _clients[index].address,
-                          style: TextStyle(fontSize: 12),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
+          DataColumn(
+            label: Text("Nombre"),
+          ),
+          DataColumn(
+            label: Text("Teléfono"),
+          ),
+          DataColumn(
+            label: Text(""),
+          ),
+        ],
+        rows: _clients.map((client) => DataRow(
+          cells: [
+            DataCell(
+              CircleAvatar(
+                radius: 20.0,
+                backgroundImage: (client.photoUrl == null || client.photoUrl.isEmpty) ? AssetImage(ListViewCells.DEFAULT_ASSET_IMAGE_PATH) : NetworkImage(client.photoUrl),
               ),
-            );
-          },
-        ),
-         onRefresh: _getData,
-      ) : Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("No se encontraron datos"),
-            FloatingActionButton(
-              backgroundColor: Colors.lightGreen,
-              onPressed: _getData,
-              child: Icon(Icons.refresh),
+            ),
+            DataCell(
+              Text(client.name),
+            ),
+            DataCell(
+              Text(client.phoneNumber),
+            ),
+            DataCell(
+              Icon(Icons.edit),
+              onTap: (){
+                print("Presionado");
+              }
             ),
           ],
-        )
+        )).toList(),
       ),
     );
   }

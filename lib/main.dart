@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:invoice_app/products.dart';
 
 import 'dashboard.dart';
 import 'widgets/text_fields.dart';
@@ -111,7 +112,7 @@ class _LoginState extends State<Login> {
         _isLoading = false;
         sharedPreferences.setString("username", jsonResponse['name']);
         sharedPreferences.setString("access_token", jsonResponse['name']);
-        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => ClientList()), (Route<dynamic> route) => false);
+        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => ProductList()), (Route<dynamic> route) => false);
       });
 
     }else{
