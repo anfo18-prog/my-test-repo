@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:invoice_app/model/product.dart';
 import 'package:invoice_app/util/http_requests.dart';
 import 'package:invoice_app/widgets/list_view_cells.dart';
+import 'package:invoice_app/widgets/menus.dart';
 
 class ProductList extends StatefulWidget {
   @override
@@ -39,6 +40,7 @@ class _ProductListState extends State<ProductList> {
         title: Text("Listado de productos"),
         backgroundColor: Colors.lightGreen,
       ),
+      drawer: SideMenu(),
       body: _products.length > 0 ? RefreshIndicator(
         child: ListView.separated(
             separatorBuilder: (context, index) => Divider(

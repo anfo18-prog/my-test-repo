@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:invoice_app/widgets/list_view_cells.dart';
+import 'package:invoice_app/widgets/menus.dart';
 
 import 'model/client.dart';
 import 'util/http_requests.dart';
@@ -40,6 +41,7 @@ class _ClientListState extends State<ClientList> {
         title: Text("Listado de clientes"),
         backgroundColor: Colors.lightGreen,
       ),
+      drawer: SideMenu(),
       body: DataTable(
         columns: [
           DataColumn(
