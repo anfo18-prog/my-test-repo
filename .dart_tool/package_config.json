@@ -116,6 +116,12 @@
       "languageVersion": "2.0"
     },
     {
+      "name": "path_provider",
+      "rootUri": "file:///Applications/Android%20Studio.app/Contents/plugins/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-0.4.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
       "name": "path_provider_linux",
       "rootUri": "file:///Applications/Android%20Studio.app/Contents/plugins/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_linux-0.0.1+2",
       "packageUri": "lib/",
@@ -206,6 +212,18 @@
       "languageVersion": "2.6"
     },
     {
+      "name": "sqflite",
+      "rootUri": "file:///Applications/Android%20Studio.app/Contents/plugins/flutter/.pub-cache/hosted/pub.dartlang.org/sqflite-1.3.1+2",
+      "packageUri": "lib/",
+      "languageVersion": "2.7"
+    },
+    {
+      "name": "sqflite_common",
+      "rootUri": "file:///Applications/Android%20Studio.app/Contents/plugins/flutter/.pub-cache/hosted/pub.dartlang.org/sqflite_common-1.0.2+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.7"
+    },
+    {
       "name": "stack_trace",
       "rootUri": "file:///Applications/Android%20Studio.app/Contents/plugins/flutter/.pub-cache/hosted/pub.dartlang.org/stack_trace-1.9.5",
       "packageUri": "lib/",
@@ -222,6 +240,12 @@
       "rootUri": "file:///Applications/Android%20Studio.app/Contents/plugins/flutter/.pub-cache/hosted/pub.dartlang.org/string_scanner-1.0.5",
       "packageUri": "lib/",
       "languageVersion": "2.0"
+    },
+    {
+      "name": "synchronized",
+      "rootUri": "file:///Applications/Android%20Studio.app/Contents/plugins/flutter/.pub-cache/hosted/pub.dartlang.org/synchronized-2.2.0+2",
+      "packageUri": "lib/",
+      "languageVersion": "2.8"
     },
     {
       "name": "term_glyph",
@@ -266,7 +290,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2020-10-09T16:45:21.163116Z",
+  "generated": "2020-11-06T16:49:52.043651Z",
   "generator": "pub",
   "generatorVersion": "2.9.1"
 }
