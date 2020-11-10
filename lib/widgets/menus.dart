@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:invoice_app/dashboard.dart';
 import 'package:invoice_app/products.dart';
+import 'package:invoice_app/view/client_local.dart';
 
 class SideMenu extends StatelessWidget {
 
@@ -36,6 +37,16 @@ class SideMenu extends StatelessWidget {
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => ProductList())
+              );
+            },
+          ),
+          new ListTile(
+            title: Text("Módulo de CLIENTES LOCAL"),
+            //subtitle: Text("Créación, modificación y eliminado de productos"),
+            onTap: (){
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => ClientLocal())
               );
             },
           ),
