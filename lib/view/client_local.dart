@@ -35,16 +35,41 @@ class _ClientLocalState extends State<ClientLocal> {
     if(form.validate()){
       form.save();
       clientModel.save(Client(id: int.parse(_id), name: _name, phoneNumber: _phoneNumber, address: _address, photoUrl: _photoUrl));
-      showDialog(context: _ctx, builder: (context){
-
-      });
+      scaffoldKey.currentState.showSnackBar(
+        SnackBar(
+          content: Text("Bien, el dato se ha guardado correctamente"),
+          duration: Duration(seconds: 3),
+        )
+      );
     }
   }
 
   void _delete(int id){
     final form = formKey.currentState;
     if(form.validate()){
-      clientModel.delete(id);
+      showDialog(context: _ctx, builder: (context){
+        return AlertDialog(
+          title: Text("Borrar cliente"),
+          content: Text("¿Estás seguro de eliminar?"),
+          actions: [
+            MaterialButton(
+              elevation: 5.0,
+              child: Text("Cancelar"),
+              onPressed: (){
+                Navigator.of(context).pop();
+              }
+            ),
+            MaterialButton(
+                elevation: 5.0,
+                child: Text("Confirmar"),
+                onPressed: (){
+                  clientModel.delete(id);
+                  Navigator.of(context).pop();
+                }
+            ),
+          ],
+        );
+      });
     }
   }
 
