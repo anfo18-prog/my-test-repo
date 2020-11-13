@@ -31,18 +31,21 @@ class _ClientLocalState extends State<ClientLocal> {
   }
 
   void _submit(){
-    final form = formKey.currentContext;
-    //if(form.validate()){
-      //form.save();
+    final form = formKey.currentState;
+    if(form.validate()){
+      form.save();
       clientModel.save(Client(id: int.parse(_id), name: _name, phoneNumber: _phoneNumber, address: _address, photoUrl: _photoUrl));
-    //}
+      showDialog(context: _ctx, builder: (context){
+
+      });
+    }
   }
 
   void _delete(int id){
-    final form = formKey.currentContext;
-    //if(form.validate()){
+    final form = formKey.currentState;
+    if(form.validate()){
       clientModel.delete(id);
-    //}
+    }
   }
 
   SingleChildScrollView dataBody(){
@@ -82,7 +85,8 @@ class _ClientLocalState extends State<ClientLocal> {
               )
             ),
           ]
-        )),
+        )
+        ).toList(),
       ) : Center(child: Text("No hay registros"),),
     );
   }
@@ -137,6 +141,15 @@ class _ClientLocalState extends State<ClientLocal> {
                   onSaved: (val) => _address = val,
                   decoration: InputDecoration(
                     labelText: "Dirección",
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(10.0),
+                child: TextFormField(
+                  onSaved: (val) => _photoUrl = val,
+                  decoration: InputDecoration(
+                    labelText: "Foto",
                   ),
                 ),
               ),
