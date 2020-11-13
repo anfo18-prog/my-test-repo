@@ -13,6 +13,16 @@ class Client{
 
   Client({this.id, this.name, this.phoneNumber, this.address, this.photoUrl});
 
+  factory Client.fromMap(dynamic obj){
+    return Client(
+      id: obj['id'],
+      name: obj['name'],
+      phoneNumber: obj['phone_number'],
+      address: obj['address'],
+      photoUrl: obj['photo_url']
+    );
+  }
+
   factory Client.fromJson(Map<String, dynamic> json){
     return Client(
       id: json['id'] ?? 0,
@@ -21,6 +31,17 @@ class Client{
       address: json['address'] ?? '',
       photoUrl: json['photo_url'] ?? '',
     );
+  }
+
+  Map<String, dynamic> toMap(){
+    var map = new Map<String, dynamic>();
+    map['id'] = id;
+    map['name'] = name;
+    map['phone_number'] = phoneNumber;
+    map['address'] = address;
+    map['photo_url'] = photoUrl;
+
+    return map;
   }
 
   static Resource<List<Client>> get list{
